@@ -1,0 +1,31 @@
+@keyframes textColorAnimation {
+    0% { color: black; }
+    25% { color: red; }
+    50% { color: blue; }
+    75% { color: green; }
+    100% { color: yellow; }
+}
+
+@keyframes buttonBackgroundAnimation {
+    0% { background-color: green; }
+    33% { background-color: yellow; }
+    66% { background-color: white; }
+    100% { background-color: green; }
+}
+
+h1, h2 {
+    animation: textColorAnimation 3s infinite;
+}
+
+button {
+    animation: buttonBackgroundAnimation 3s infinite;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
