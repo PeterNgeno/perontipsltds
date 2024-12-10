@@ -1,6 +1,6 @@
 # Peron Tips Limited Quiz Project
 
-This project provides a quiz application where users can answer questions and receive scores.
+This website provides a quiz application where users can answer questions and receive scores.
 
 ## Features
 - User Authentication
