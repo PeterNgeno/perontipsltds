@@ -1,21 +1,30 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const quizRoutes = require('./routes');
-const admin = require('firebase-admin');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const quizRoutes = require("./routes/quizRoutes");
+const { PORT } = require("../shared/config");
 
-// Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
-  databaseURL: 'https://your-database-name.firebaseio.com'
+const app = express();
+
+// Middleware setup
+app.use(cors()); // Enable CORS for cross-origin requests
+app.use(bodyParser.json()); // Parse JSON request bodies
+
+// Health check route
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "Peron Tips Limited Quiz API is running" });
 });
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use('/quiz', quizRoutes);
+// Quiz routes
+app.use("/api/quiz", quizRoutes);
 
-const PORT = process.env.PORT || 5000;
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ success: false, message: "Something went wrong!" });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Quiz server running on port ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
