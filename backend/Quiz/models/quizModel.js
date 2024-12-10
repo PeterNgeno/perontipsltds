@@ -1,21 +1,25 @@
-const admin = require('firebase-admin');
-const db = admin.firestore();
+const { db } = require("../../shared/database");
 
-// Define a Quiz data model
-const Quiz = {
-  getQuestions: async (section) => {
-    const snapshot = await db.collection('quizzes').doc(section).collection('questions').get();
+exports.fetchQuizQuestions = async () => {
     const questions = [];
-    snapshot.forEach(doc => {
-      questions.push(doc.data());
+    const snapshot = await db.collection("quiz_questions").get();
+
+    snapshot.forEach((doc) => {
+        questions.push({ id: doc.id, ...doc.data() });
     });
+
     return questions;
-  },
-  
-  saveAnswer: async (userId, section, answer) => {
-    const userRef = db.collection('users').doc(userId);
-    await userRef.update({ [`quizScores.${section}`]: answer });
-  }
 };
 
-module.exports = Quiz;
+exports.evaluateQuizAnswers = async (submittedAnswers) => {
+    let score = 0;
+    const correctAnswers = await db.collection("quiz_answers").get();
+
+    correctAnswers.forEach((doc) => {
+        if (submittedAnswers[doc.id] === doc.data().answer) {
+            score += 10;
+        }
+    });
+
+    return { score, passed: score >= 80 };
+};
