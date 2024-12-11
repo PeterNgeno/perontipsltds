@@ -1,4 +1,4 @@
-const { db } = require("../../shared/database");
+const { db } = require("backend/Quiz/shared/database");
 
 exports.fetchQuizQuestions = async () => {
     const questions = [];
