@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const quizRoutes = require("./routes/quizRoutes");
-const { PORT } = require("../shared/config");
+const { PORT } = require("./shared/config"); // Updated path to correctly point to config.js
 
 const app = express();
 
