@@ -1,5 +1,7 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("../backend/Quiz/firebase.json");
+
+// Ensure that the correct path to firebase.json is used
+const serviceAccount = require(path.resolve(__dirname, "../../firebase.json")); // Adjust the path as needed
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
