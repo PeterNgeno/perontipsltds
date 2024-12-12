@@ -3,7 +3,7 @@ const serviceAccount = require("../../database/firebase.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://<your-database-name>.firebaseio.com",
+    databaseURL: "https://perontipsltd-default-rtdb.firebaseio.com/",
 });
 
 const db = admin.firestore();
