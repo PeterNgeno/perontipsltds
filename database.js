@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("../../database/firebase.json");
+const serviceAccount = require("../backend/Quiz/firebase.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
