@@ -1,4 +1,4 @@
-# Peron Tips Limited Quiz Project
+# Peron Tips Limited Quiz Website 
 
 This website provides a quiz application where users can answer questions and receive scores.
 
